@@ -30,7 +30,10 @@ public class Main {
         System.out.println("2. Призывники: " + invocatoryPeople.size() + ".");
 
         List<Person> workPeople = persons.stream()
-                .filter(person -> person.getAge() > 17)
+                .filter(person -> person.getAge() > 17 &&
+                        (Sex.MAN.equals(person.getSex()) && person.getAge() < 65) ||
+                        (Sex.WOMAN.equals(person.getSex()) && person.getAge() < 60)
+                )
                 .filter(person -> Education.HIGHER.equals(person.getEducation()))
                 .sorted(Comparator.comparing(person -> person.getFamily()))
                 .collect(Collectors.toList());
